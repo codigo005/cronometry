@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Contagem até 01/01/2026</title>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      margin: 0;
+    }
+    h1 {
+      color: #ff4444;
+      margin-bottom: 20px;
+    }
+    #countdown {
+      font-size: 2.5rem;
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ff0000;
+      min-width: 360px;
+    }
+    #message {
+      margin-top: 20px;
+      color: #ccc;
+      font-size: 1.1rem;
+    }
+    .expired {
+      color: #00ff00;
+      text-shadow: 0 0 5px #00ff00;
+    }
+  </style>
+</head>
+<body>
+  <h1>VOCÊ TEM ATÉ 01/01/2026</h1>
+  <div id="countdown">00d 00h 00m 00s 000ms</div>
+  <div id="message">Se não fizer até lá, desista. O tempo não espera ninguém.</div>
+
+  <script>
+    const countdownEl = document.getElementById("countdown");
+    const messageEl = document.getElementById("message");
+
+    const targetDate = new Date("2026-01-01T00:00:00").getTime();
+
+    function pad(num, size = 2) {
+      return String(num).padStart(size, '0');
+    }
+
+    function updateCountdown() {
+      const now = Date.now();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        countdownEl.textContent = "00d 00h 00m 00s 000ms";
+        messageEl.textContent = "⛔ Acabou. O tempo expirou. Se não fez, agora é tarde.";
+        messageEl.classList.add("expired");
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      const milliseconds = diff % 1000;
+
+      countdownEl.textContent = `${pad(days)}d ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s ${pad(milliseconds, 3)}ms`;
+
+      requestAnimationFrame(updateCountdown);
+    }
+
+    requestAnimationFrame(updateCountdown);
+  </script>
+</body>
+</html>
