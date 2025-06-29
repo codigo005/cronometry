@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagens dinamicas</title>
+</head>
+<body>
+    <h1>Uma explicação Sobre IMG</h1>
+    <p>analise o tamanho de todas as fotos medindo o tamanho de seu navegador</p>
+    <picture>
+        <source media="(max-width:750px)" srcset="foto-p.png" type="image/png">
+        <source media="(max-width:1050px)" srcset="foto-m.png" type="image/png">
+        <img src="foto-g.png" alt="imagen de tamanho grande">
+    </picture>
+    <h1>Reproduzindo Audio</h1>
+    <p>aperte no botao abaixo para reproduzir o audio</p>
+    <audio src="MONTAGEM BAILÃO.mp3" controls  autoplay> play</audio>
+    
+</body>
+</html>
